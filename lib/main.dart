@@ -40,16 +40,33 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: MobileButton(
-              text: 'Get Started',
               backgroundColor: blue900,
               foregroundColor: Colors.white,
+              text: 'Get Started',
             ),
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Text('Maximize skill, minimize budget', style: textPreset1),
+        padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 20),
+        child: Column(
+          children: [
+            Text(
+              'Maximize skill, minimize budget',
+              style: getTextPresetMobile1(color: blue900),
+            ),
+            Text(
+              'Our modern courses across a range of in-demand skills will'
+              'give you the knowledge you need to live the life you want.',
+              style: getTextPreset5(color: waterlooGrey),
+            ),
+            MobileGradientButton(
+              backgroundGradient: gradientPink,
+              foregroundColor: Colors.white,
+              text: "Get Started",
+            ),
+          ],
+        ),
       ),
     );
   }
