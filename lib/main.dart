@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
               style: getTextPreset5(color: waterlooGrey),
             ),
             MobileGradientButton(
-              backgroundGradient: gradientPink,
+              backgroundGradient: gradientOrange,
               foregroundColor: Colors.white,
               text: "Get Started",
             ),

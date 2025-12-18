@@ -10,10 +10,10 @@ const Color pink300 = Color(0xFFFFA7C3);
 const Color waterlooGrey = Color(0xFF83869A);
 
 /* Linear gradients */
-const LinearGradient gradientPink = LinearGradient(
+const LinearGradient gradientOrange = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
-  colors: <Color>[Color(0xFFF02AA6), Color(0xFFFF6F48)],
+  colors: <Color>[Color.fromARGB(255, 255, 112, 72), Color(0xFFF02AA6)],
 );
 
 const LinearGradient gradientPurple = LinearGradient(
