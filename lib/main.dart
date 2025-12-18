@@ -50,21 +50,26 @@ class HomePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Maximize skill, minimize budget',
               style: getTextPresetMobile1(color: blue900),
             ),
+            SizedBox(height: 24),
             Text(
               'Our modern courses across a range of in-demand skills will'
               'give you the knowledge you need to live the life you want.',
               style: getTextPreset5(color: waterlooGrey),
             ),
+            SizedBox(height: 40),
             MobileGradientButton(
               backgroundGradient: gradientOrange,
               foregroundColor: Colors.white,
               text: "Get Started",
             ),
+            SizedBox(height: 48),
+            Image.asset('images/hero-mobile.png'),
           ],
         ),
       ),
