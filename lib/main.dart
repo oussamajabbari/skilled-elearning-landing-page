@@ -19,6 +19,46 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyCard extends StatelessWidget {
+  final String iconName;
+  final String cardTitle;
+  final String cardText;
+
+  const MyCard({
+    super.key,
+    required this.iconName,
+    required this.cardTitle,
+    required this.cardText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          child: Card(
+            //padding: EdgeInsets.fromLTRB(32, 64, 32, 40),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(32, 64, 32, 40),
+              child: Column(
+                children: [
+                  Text(cardTitle, style: getTextPresetMobile4(color: blue900)),
+                  SizedBox(height: 24),
+                  Text(cardText, style: getTextPreset6(color: waterlooGrey)),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: 32,
+          child: SvgPicture.asset(iconName, width: 56, height: 56),
+        ),
+      ],
+    );
+  }
+}
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -108,7 +148,15 @@ class HomePage extends StatelessWidget {
                         style: getTextPresetMobile3(color: Colors.white),
                       ),
                     ),
-                    Text('moto'),
+                    SizedBox(height: 32),
+                    MyCard(
+                      iconName: 'icon-animation.svg',
+                      cardTitle: 'Animation',
+                      cardText:
+                          'Learn the latest animation '
+                          'techniques to create stunning '
+                          'motion design and captivate your audience.',
+                    ),
                   ],
                 ),
               ),
