@@ -25,7 +25,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         toolbarHeight: 80,
         title: Padding(
           padding: const EdgeInsets.only(left: 10),
@@ -48,34 +50,70 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Maximize skill, minimize budget',
-                style: getTextPresetMobile1(color: blue900),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 20),
+              child: Column(
+                children: [
+                  Text(
+                    'Maximize skill, minimize budget',
+                    style: getTextPresetMobile1(color: blue900),
+                  ),
+                  SizedBox(height: 24),
+                  Text(
+                    'Our modern courses across a range of in-demand skills will'
+                    'give you the knowledge you need to live the life you want.',
+                    style: getTextPreset5(color: waterlooGrey),
+                  ),
+                  SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      MobileGradientButton(
+                        backgroundGradient: gradientPreset1,
+                        foregroundColor: Colors.white,
+                        text: "Get Started",
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 48),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 10, 4, 9),
+                    child: Image.asset('images/hero-mobile.png'),
+                  ),
+                ],
               ),
-              SizedBox(height: 24),
-              Text(
-                'Our modern courses across a range of in-demand skills will'
-                'give you the knowledge you need to live the life you want.',
-                style: getTextPreset5(color: waterlooGrey),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[Colors.white, Color(0xFFF0F1FF)],
+                ),
               ),
-              SizedBox(height: 40),
-              MobileGradientButton(
-                backgroundGradient: gradientOrange,
-                foregroundColor: Colors.white,
-                text: "Get Started",
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 64, 20, 80),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(32),
+                      decoration: BoxDecoration(
+                        gradient: gradientPreset1,
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      child: Text(
+                        'Check out our most popular courses!',
+                        style: getTextPresetMobile3(color: Colors.white),
+                      ),
+                    ),
+                    Text('moto'),
+                  ],
+                ),
               ),
-              SizedBox(height: 48),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(4, 10, 4, 9),
-                child: Image.asset('images/hero-mobile.png'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
