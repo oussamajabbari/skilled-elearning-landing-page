@@ -35,20 +35,42 @@ class MyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
-          child: Card(
-            //padding: EdgeInsets.fromLTRB(32, 64, 32, 40),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(32, 64, 32, 40),
-              child: Column(
-                children: [
-                  Text(cardTitle, style: getTextPresetMobile4(color: blue900)),
-                  SizedBox(height: 24),
-                  Text(cardText, style: getTextPreset6(color: waterlooGrey)),
-                ],
+        Column(
+          children: [
+            SizedBox(height: 28),
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20.0)],
+              ),
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 64, 32, 40),
+                  // padding: const EdgeInsets.all(0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        cardTitle,
+                        style: getTextPresetMobile4(color: blue900),
+                      ),
+                      SizedBox(height: 24),
+                      Text(
+                        cardText,
+                        style: getTextPreset6(color: waterlooGrey),
+                      ),
+                      SizedBox(height: 24),
+                      TextButton(
+                        onPressed: () {},
+                        style: linkButtonStyle,
+                        child: Text('Get Started'),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
         Positioned(
           left: 32,
@@ -68,6 +90,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         toolbarHeight: 80,
         title: Padding(
           padding: const EdgeInsets.only(left: 10),

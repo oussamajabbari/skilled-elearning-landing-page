@@ -100,6 +100,18 @@ TextStyle getTextPreset7({required Color color}) {
   );
 }
 
+ButtonStyle linkButtonStyle = TextButton.styleFrom(
+  padding: EdgeInsets.all(0),
+  foregroundColor: pink600,
+  textStyle: GoogleFonts.plusJakartaSans(
+    textStyle: TextStyle(
+      fontSize: 18,
+      height: 1.5,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+);
+
 /* Text fonts tablet/mobile */
 
 TextStyle getTextPresetMobile1({required Color color}) {
