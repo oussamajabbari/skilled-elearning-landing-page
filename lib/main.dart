@@ -40,9 +40,15 @@ class MyCard extends StatelessWidget {
             SizedBox(height: 28),
             Container(
               decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20.0)],
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(11, 6, 22, 141),
+                    blurRadius: 20.0,
+                  ),
+                ],
               ),
               child: Card(
+                elevation: 0,
                 color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(32, 64, 32, 40),
@@ -156,32 +162,82 @@ class HomePage extends StatelessWidget {
                   colors: <Color>[Colors.white, Color(0xFFF0F1FF)],
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 64, 20, 80),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(32),
-                      decoration: BoxDecoration(
-                        gradient: gradientPreset1,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                      ),
-                      child: Text(
-                        'Check out our most popular courses!',
-                        style: getTextPresetMobile3(color: Colors.white),
-                      ),
+              padding: const EdgeInsets.fromLTRB(20, 64, 20, 80),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(32),
+                    decoration: BoxDecoration(
+                      gradient: gradientPreset1,
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
-                    SizedBox(height: 32),
-                    MyCard(
-                      iconName: 'icon-animation.svg',
-                      cardTitle: 'Animation',
-                      cardText:
-                          'Learn the latest animation '
-                          'techniques to create stunning '
-                          'motion design and captivate your audience.',
+                    child: Text(
+                      'Check out our most popular courses!',
+                      style: getTextPresetMobile3(color: Colors.white),
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 32),
+                  MyCard(
+                    iconName: 'icon-animation.svg',
+                    cardTitle: 'Animation',
+                    cardText:
+                        'Learn the latest animation '
+                        'techniques to create stunning '
+                        'motion design and captivate your audience.',
+                  ),
+                  SizedBox(height: 32),
+                  MyCard(
+                    iconName: 'icon-design.svg',
+                    cardTitle: 'Design',
+                    cardText:
+                        'Create beautiful, usable interfaces '
+                        'to help shape the future of how the web looks.',
+                  ),
+                  SizedBox(height: 32),
+                  MyCard(
+                    iconName: 'icon-photography.svg',
+                    cardTitle: 'Photography',
+                    cardText:
+                        'Explore critical fundamentals like lighting, '
+                        'composition, and focus to capture exceptional photos.',
+                  ),
+                  SizedBox(height: 32),
+                  MyCard(
+                    iconName: 'icon-crypto.svg',
+                    cardTitle: 'Crypto',
+                    cardText:
+                        'All you need to know to get started investing in crypto. '
+                        'Go from beginner to advanced with this 54 hour course.',
+                  ),
+                  SizedBox(height: 32),
+                  MyCard(
+                    iconName: 'icon-business.svg',
+                    cardTitle: 'Business',
+                    cardText:
+                        'A step-by-step playbook to help you start, scale, '
+                        'and sustain your business without outside investment.',
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              decoration: BoxDecoration(color: blue900),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SvgPicture.asset(
+                    'logo-light.svg',
+                    semanticsLabel: 'skilled logo',
+                    height: 20,
+                    width: 79,
+                  ),
+                  MobileGradientButton(
+                    backgroundGradient: gradientPreset2,
+                    foregroundColor: Colors.white,
+                    text: 'Get Started',
+                  ),
+                ],
               ),
             ),
           ],
