@@ -35,48 +35,54 @@ class MyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Column(
-          children: [
-            SizedBox(height: 28),
-            Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromARGB(11, 6, 22, 141),
-                    blurRadius: 20.0,
-                  ),
-                ],
-              ),
-              child: Card(
-                elevation: 0,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(32, 64, 32, 40),
-                  // padding: const EdgeInsets.all(0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        cardTitle,
-                        style: getTextPresetMobile4(color: blue900),
-                      ),
-                      SizedBox(height: 24),
-                      Text(
-                        cardText,
-                        style: getTextPreset6(color: waterlooGrey),
-                      ),
-                      SizedBox(height: 24),
-                      TextButton(
-                        onPressed: () {},
-                        style: linkButtonStyle,
-                        child: Text('Get Started'),
+        SizedBox(
+          height: 350,
+          child: Column(
+            children: [
+              SizedBox(height: 28),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(11, 6, 22, 141),
+                        blurRadius: 20.0,
                       ),
                     ],
                   ),
+                  child: Card(
+                    elevation: 0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(32, 64, 32, 40),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            cardTitle,
+                            style: getTextPresetMobile4(color: blue900),
+                          ),
+                          SizedBox(height: 24),
+                          Expanded(
+                            child: Text(
+                              cardText,
+                              style: getTextPreset6(color: waterlooGrey),
+                            ),
+                          ),
+                          SizedBox(height: 24),
+                          TextButton(
+                            onPressed: () {},
+                            style: linkButtonStyle,
+                            child: Text('Get Started'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         Positioned(
           left: 32,
@@ -92,6 +98,54 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var titleCard = Container(
+      padding: EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        gradient: gradientPreset1,
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Text(
+        'Check out our most popular courses!',
+        style: getTextPresetMobile3(color: Colors.white),
+      ),
+    );
+    var animationCard = MyCard(
+      iconName: 'icon-animation.svg',
+      cardTitle: 'Animation',
+      cardText:
+          'Learn the latest animation '
+          'techniques to create stunning '
+          'motion design and captivate your audience.',
+    );
+    var designCard = MyCard(
+      iconName: 'icon-design.svg',
+      cardTitle: 'Design',
+      cardText:
+          'Create beautiful, usable interfaces '
+          'to help shape the future of how the web looks.',
+    );
+    var photographyCard = MyCard(
+      iconName: 'icon-photography.svg',
+      cardTitle: 'Photography',
+      cardText:
+          'Explore critical fundamentals like lighting, '
+          'composition, and focus to capture exceptional photos.',
+    );
+    var cryptoCard = MyCard(
+      iconName: 'icon-crypto.svg',
+      cardTitle: 'Crypto',
+      cardText:
+          'All you need to know to get started investing in crypto. '
+          'Go from beginner to advanced with this 54 hour course.',
+    );
+    var businessCard = MyCard(
+      iconName: 'icon-business.svg',
+      cardTitle: 'Business',
+      cardText:
+          'A step-by-step playbook to help you start, scale, '
+          'and sustain your business without outside investment.',
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -162,62 +216,57 @@ class HomePage extends StatelessWidget {
                   colors: <Color>[Colors.white, Color(0xFFF0F1FF)],
                 ),
               ),
-              padding: const EdgeInsets.fromLTRB(20, 64, 20, 80),
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(32),
-                    decoration: BoxDecoration(
-                      gradient: gradientPreset1,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    child: Text(
-                      'Check out our most popular courses!',
-                      style: getTextPresetMobile3(color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(height: 32),
-                  MyCard(
-                    iconName: 'icon-animation.svg',
-                    cardTitle: 'Animation',
-                    cardText:
-                        'Learn the latest animation '
-                        'techniques to create stunning '
-                        'motion design and captivate your audience.',
-                  ),
-                  SizedBox(height: 32),
-                  MyCard(
-                    iconName: 'icon-design.svg',
-                    cardTitle: 'Design',
-                    cardText:
-                        'Create beautiful, usable interfaces '
-                        'to help shape the future of how the web looks.',
-                  ),
-                  SizedBox(height: 32),
-                  MyCard(
-                    iconName: 'icon-photography.svg',
-                    cardTitle: 'Photography',
-                    cardText:
-                        'Explore critical fundamentals like lighting, '
-                        'composition, and focus to capture exceptional photos.',
-                  ),
-                  SizedBox(height: 32),
-                  MyCard(
-                    iconName: 'icon-crypto.svg',
-                    cardTitle: 'Crypto',
-                    cardText:
-                        'All you need to know to get started investing in crypto. '
-                        'Go from beginner to advanced with this 54 hour course.',
-                  ),
-                  SizedBox(height: 32),
-                  MyCard(
-                    iconName: 'icon-business.svg',
-                    cardTitle: 'Business',
-                    cardText:
-                        'A step-by-step playbook to help you start, scale, '
-                        'and sustain your business without outside investment.',
-                  ),
-                ],
+              padding: const EdgeInsets.fromLTRB(0, 64, 0, 80),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 64, 20, 80),
+                child: isPhoneSize(context)
+                    ? Column(
+                        children: [
+                          titleCard,
+                          SizedBox(height: 32),
+                          animationCard,
+                          SizedBox(height: 32),
+                          designCard,
+                          SizedBox(height: 32),
+                          photographyCard,
+                          SizedBox(height: 32),
+                          cryptoCard,
+                          SizedBox(height: 32),
+                          businessCard,
+                        ],
+                      )
+                    : isTabSize(context)
+                    ? GridView.count(
+                        childAspectRatio:
+                            (MediaQuery.of(context).size.width - 64) / 700,
+                        shrinkWrap: true,
+                        crossAxisSpacing: 24,
+                        mainAxisSpacing: 32,
+                        crossAxisCount: 2,
+                        children: [
+                          titleCard,
+                          animationCard,
+                          designCard,
+                          photographyCard,
+                          cryptoCard,
+                          businessCard,
+                        ],
+                      )
+                    : GridView.count(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(20),
+                        crossAxisSpacing: 24,
+                        mainAxisSpacing: 32,
+                        crossAxisCount: 3,
+                        children: [
+                          titleCard,
+                          animationCard,
+                          designCard,
+                          photographyCard,
+                          cryptoCard,
+                          businessCard,
+                        ],
+                      ),
               ),
             ),
             Container(
@@ -244,6 +293,15 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool isPhoneSize(BuildContext context) {
+    return MediaQuery.sizeOf(context).width < 600;
+  }
+
+  bool isTabSize(BuildContext context) {
+    return MediaQuery.sizeOf(context).width >= 600 &&
+        MediaQuery.sizeOf(context).width < 1200;
   }
 }
 //SingleChildScrollView
