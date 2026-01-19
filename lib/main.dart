@@ -98,8 +98,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var titleCard = Container(
-      padding: EdgeInsets.all(32),
+    var titleCardContainer = Container(
+      padding: EdgeInsets.fromLTRB(32, 64, 32, 40),
       decoration: BoxDecoration(
         gradient: gradientPreset1,
         borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -109,6 +109,14 @@ class HomePage extends StatelessWidget {
         style: getTextPresetMobile3(color: Colors.white),
       ),
     );
+    var titleCard = isPhoneSize(context)
+        ? titleCardContainer
+        : Column(
+            children: [
+              SizedBox(height: 28),
+              Expanded(child: titleCardContainer),
+            ],
+          );
     var animationCard = MyCard(
       iconName: 'icon-animation.svg',
       cardTitle: 'Animation',
@@ -146,6 +154,34 @@ class HomePage extends StatelessWidget {
           'and sustain your business without outside investment.',
     );
 
+    var presentationTextsAndButton = Column(
+      children: [
+        Text(
+          'Maximize skill, minimize budget',
+          style: getTextPresetMobile1(color: blue900),
+        ),
+        SizedBox(height: 24),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            'Our modern courses across a range of in-demand skills will'
+            'give you the knowledge you need to live the life you want.',
+            style: getTextPreset5(color: waterlooGrey),
+          ),
+        ),
+        SizedBox(height: 40),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            MobileGradientButton(
+              backgroundGradient: gradientPreset1,
+              foregroundColor: Colors.white,
+              text: "Get Started",
+            ),
+          ],
+        ),
+      ],
+    );
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -175,39 +211,30 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 20),
-              child: Column(
-                children: [
-                  Text(
-                    'Maximize skill, minimize budget',
-                    style: getTextPresetMobile1(color: blue900),
-                  ),
-                  SizedBox(height: 24),
-                  Text(
-                    'Our modern courses across a range of in-demand skills will'
-                    'give you the knowledge you need to live the life you want.',
-                    style: getTextPreset5(color: waterlooGrey),
-                  ),
-                  SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+            isPhoneSize(context)
+                ? Column(
                     children: [
-                      MobileGradientButton(
-                        backgroundGradient: gradientPreset1,
-                        foregroundColor: Colors.white,
-                        text: "Get Started",
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 64, 20, 0),
+                        child: presentationTextsAndButton,
                       ),
+                      SizedBox(height: 48),
+                      Image.asset('assets/images/hero-mobile.png'),
                     ],
+                  )
+                : Padding(
+                    padding: isTabSize(context)
+                        ? EdgeInsets.fromLTRB(44, 64, 64, 0)
+                        : EdgeInsets.fromLTRB(160, 64, 160, 0),
+                    child: Row(
+                      children: [
+                        Expanded(child: presentationTextsAndButton),
+                        Expanded(
+                          child: Image.asset('assets/images/hero-desktop.png'),
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 48),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 10, 4, 9),
-                    child: Image.asset('images/hero-mobile.png'),
-                  ),
-                ],
-              ),
-            ),
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -216,61 +243,67 @@ class HomePage extends StatelessWidget {
                   colors: <Color>[Colors.white, Color(0xFFF0F1FF)],
                 ),
               ),
-              padding: const EdgeInsets.fromLTRB(0, 64, 0, 80),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 64, 20, 80),
-                child: isPhoneSize(context)
-                    ? Column(
-                        children: [
-                          titleCard,
-                          SizedBox(height: 32),
-                          animationCard,
-                          SizedBox(height: 32),
-                          designCard,
-                          SizedBox(height: 32),
-                          photographyCard,
-                          SizedBox(height: 32),
-                          cryptoCard,
-                          SizedBox(height: 32),
-                          businessCard,
-                        ],
-                      )
-                    : isTabSize(context)
-                    ? GridView.count(
-                        childAspectRatio:
-                            (MediaQuery.of(context).size.width - 64) / 700,
-                        shrinkWrap: true,
-                        crossAxisSpacing: 24,
-                        mainAxisSpacing: 32,
-                        crossAxisCount: 2,
-                        children: [
-                          titleCard,
-                          animationCard,
-                          designCard,
-                          photographyCard,
-                          cryptoCard,
-                          businessCard,
-                        ],
-                      )
-                    : GridView.count(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.all(20),
-                        crossAxisSpacing: 24,
-                        mainAxisSpacing: 32,
-                        crossAxisCount: 3,
-                        children: [
-                          titleCard,
-                          animationCard,
-                          designCard,
-                          photographyCard,
-                          cryptoCard,
-                          businessCard,
-                        ],
-                      ),
-              ),
+              padding: isPhoneSize(context)
+                  ? EdgeInsets.fromLTRB(20, 64, 20, 80)
+                  : isTabSize(context)
+                  ? EdgeInsets.fromLTRB(44, 64, 44, 144)
+                  : EdgeInsets.fromLTRB(160, 64, 160, 144),
+              child: isPhoneSize(context)
+                  ? Column(
+                      children: [
+                        titleCard,
+                        SizedBox(height: 32),
+                        animationCard,
+                        SizedBox(height: 32),
+                        designCard,
+                        SizedBox(height: 32),
+                        photographyCard,
+                        SizedBox(height: 32),
+                        cryptoCard,
+                        SizedBox(height: 32),
+                        businessCard,
+                      ],
+                    )
+                  : isTabSize(context)
+                  ? GridView.count(
+                      childAspectRatio:
+                          ((MediaQuery.of(context).size.width - 112) / 2) / 350,
+                      shrinkWrap: true,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 32,
+                      crossAxisCount: 2,
+                      children: [
+                        titleCard,
+                        animationCard,
+                        designCard,
+                        photographyCard,
+                        cryptoCard,
+                        businessCard,
+                      ],
+                    )
+                  : GridView.count(
+                      childAspectRatio:
+                          ((MediaQuery.of(context).size.width - 384) / 3) / 350,
+                      shrinkWrap: true,
+                      crossAxisSpacing: 32,
+                      mainAxisSpacing: 56,
+                      crossAxisCount: 3,
+                      children: [
+                        titleCard,
+                        animationCard,
+                        designCard,
+                        photographyCard,
+                        cryptoCard,
+                        businessCard,
+                      ],
+                    ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              padding: isPhoneSize(context)
+                  ? EdgeInsets.symmetric(vertical: 24, horizontal: 20)
+                  : isTabSize(context)
+                  ? EdgeInsets.symmetric(vertical: 24, horizontal: 44)
+                  : EdgeInsets.symmetric(vertical: 24, horizontal: 160),
               decoration: BoxDecoration(color: blue900),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
