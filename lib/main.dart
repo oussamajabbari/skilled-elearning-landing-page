@@ -86,7 +86,7 @@ class MyCard extends StatelessWidget {
         ),
         Positioned(
           left: 32,
-          child: SvgPicture.asset(iconName, width: 56, height: 56),
+          child: SvgPicture.asset('assets/$iconName', width: 56, height: 56),
         ),
       ],
     );
@@ -184,57 +184,59 @@ class HomePage extends StatelessWidget {
     );
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
-        toolbarHeight: 80,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: SvgPicture.asset(
-            'logo-dark.svg',
-            semanticsLabel: 'skilled logo',
-            height: 20,
-            width: 79,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: MobileButton(
-              backgroundColor: blue900,
-              foregroundColor: Colors.white,
-              text: 'Get Started',
-            ),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            isPhoneSize(context)
-                ? Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 64, 20, 0),
-                        child: presentationTextsAndButton,
-                      ),
-                      SizedBox(height: 48),
-                      Image.asset('assets/images/hero-mobile.png'),
-                    ],
-                  )
-                : Padding(
-                    padding: isTabSize(context)
-                        ? EdgeInsets.fromLTRB(44, 64, 64, 0)
-                        : EdgeInsets.fromLTRB(160, 64, 160, 0),
-                    child: Row(
-                      children: [
-                        Expanded(child: presentationTextsAndButton),
-                        Expanded(
-                          child: Image.asset('assets/images/hero-desktop.png'),
-                        ),
-                      ],
+            Padding(
+              padding: isPhoneSize(context)
+                  ? EdgeInsetsGeometry.symmetric(vertical: 16)
+                  : EdgeInsetsGeometry.symmetric(vertical: 24),
+              child: Padding(
+                padding: _getGlobalHorizontalPadding(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/logo-dark.svg',
+                      semanticsLabel: 'skilled logo',
+                      height: 20,
+                      width: 79,
                     ),
-                  ),
+                    MobileButton(
+                      backgroundColor: blue900,
+                      foregroundColor: Colors.white,
+                      text: 'Get Started',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(vertical: 64),
+              child: isPhoneSize(context)
+                  ? Column(
+                      children: [
+                        Padding(
+                          padding: _getGlobalHorizontalPadding(context),
+                          child: presentationTextsAndButton,
+                        ),
+                        SizedBox(height: 48),
+                        Image.asset('assets/images/hero-mobile.png'),
+                      ],
+                    )
+                  : Padding(
+                      padding: _getGlobalHorizontalPadding(context),
+                      child: Row(
+                        children: [
+                          Expanded(child: presentationTextsAndButton),
+                          Expanded(
+                            //child: Image.asset('assets/images/hero-desktop.png'),
+                            child: Container(),
+                          ),
+                        ],
+                      ),
+                    ),
+            ),
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -243,11 +245,7 @@ class HomePage extends StatelessWidget {
                   colors: <Color>[Colors.white, Color(0xFFF0F1FF)],
                 ),
               ),
-              padding: isPhoneSize(context)
-                  ? EdgeInsets.fromLTRB(20, 64, 20, 80)
-                  : isTabSize(context)
-                  ? EdgeInsets.fromLTRB(44, 64, 44, 144)
-                  : EdgeInsets.fromLTRB(160, 64, 160, 144),
+              padding: _getGlobalHorizontalPadding(context),
               child: isPhoneSize(context)
                   ? Column(
                       children: [
@@ -309,7 +307,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SvgPicture.asset(
-                    'logo-light.svg',
+                    'assets/logo-light.svg',
                     semanticsLabel: 'skilled logo',
                     height: 20,
                     width: 79,
@@ -326,6 +324,14 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  EdgeInsets _getGlobalHorizontalPadding(BuildContext context) {
+    return isPhoneSize(context)
+        ? EdgeInsets.symmetric(horizontal: 20)
+        : isTabSize(context)
+        ? EdgeInsets.symmetric(horizontal: 44)
+        : EdgeInsets.symmetric(horizontal: 144);
   }
 
   bool isPhoneSize(BuildContext context) {
