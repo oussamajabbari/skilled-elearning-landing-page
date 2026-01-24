@@ -208,7 +208,7 @@ class HomePage extends StatelessWidget {
                     left: MediaQuery.sizeOf(context).width / 2,
                     child: SizedBox(
                       height: 700,
-                      child: Image.asset('assets/images/hero-desktop.png'),
+                      child: Image.asset('assets/images/hero-tablet.png'),
                     ),
                   ),
             Column(
