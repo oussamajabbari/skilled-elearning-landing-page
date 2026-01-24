@@ -245,7 +245,7 @@ class HomePage extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsetsGeometry.symmetric(
-                    vertical: isDesktopSize(context) ? 188 : 64,
+                    vertical: isDesktopSize(context) ? 150 : 64,
                   ),
                   child: isPhoneSize(context)
                       ? Column(
