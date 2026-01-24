@@ -298,3 +298,17 @@ class MobileGradientButton extends GradientBaseButton {
          textStyle: getTextPreset6(color: Colors.white),
        );
 }
+
+class DesktopGradientButton extends GradientBaseButton {
+  DesktopGradientButton({
+    super.key,
+    required super.backgroundGradient,
+    required super.foregroundColor,
+    required super.text,
+  }) : super(
+         height: 59,
+         horizontalPadding: 32,
+         verticalPadding: 16,
+         textStyle: getTextPreset6(color: Colors.white),
+       );
+}

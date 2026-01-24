@@ -158,26 +158,31 @@ class HomePage extends StatelessWidget {
       children: [
         Text(
           'Maximize skill, minimize budget',
-          style: getTextPresetMobile1(color: blue900),
+          style: isPhoneSize(context)
+              ? getTextPresetMobile1(color: blue900)
+              : getTextPreset1(color: blue900),
         ),
         SizedBox(height: 24),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Our modern courses across a range of in-demand skills will'
-            'give you the knowledge you need to live the life you want.',
-            style: getTextPreset5(color: waterlooGrey),
-          ),
+        Text(
+          'Our modern courses across a range of in-demand skills will'
+          'give you the knowledge you need to live the life you want.',
+          style: getTextPreset5(color: waterlooGrey),
         ),
         SizedBox(height: 40),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            MobileGradientButton(
-              backgroundGradient: gradientPreset1,
-              foregroundColor: Colors.white,
-              text: "Get Started",
-            ),
+            isPhoneSize(context)
+                ? MobileGradientButton(
+                    backgroundGradient: gradientPreset1,
+                    foregroundColor: Colors.white,
+                    text: "Get Started",
+                  )
+                : DesktopGradientButton(
+                    backgroundGradient: gradientPreset1,
+                    foregroundColor: Colors.white,
+                    text: "Get Started",
+                  ),
           ],
         ),
       ],
@@ -187,14 +192,25 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Positioned(
-              top: -130,
-              right: -350,
-              child: SizedBox(
-                height: 700,
-                child: Image.asset('assets/images/hero-desktop.png'),
-              ),
-            ),
+            isPhoneSize(context)
+                ? Container()
+                : isDesktopSize(context)
+                ? Positioned(
+                    top: -130,
+                    left: MediaQuery.sizeOf(context).width / 2,
+                    child: SizedBox(
+                      height: 900,
+                      child: Image.asset('assets/images/hero-desktop.png'),
+                    ),
+                  )
+                : Positioned(
+                    top: -80,
+                    left: MediaQuery.sizeOf(context).width / 2,
+                    child: SizedBox(
+                      height: 700,
+                      child: Image.asset('assets/images/hero-desktop.png'),
+                    ),
+                  ),
             Column(
               children: [
                 Padding(
@@ -209,20 +225,28 @@ class HomePage extends StatelessWidget {
                         SvgPicture.asset(
                           'assets/logo-dark.svg',
                           semanticsLabel: 'skilled logo',
-                          height: 20,
-                          width: 79,
+                          height: isDesktopSize(context) ? 28 : 20,
+                          width: isDesktopSize(context) ? 111 : 79,
                         ),
-                        MobileButton(
-                          backgroundColor: blue900,
-                          foregroundColor: Colors.white,
-                          text: 'Get Started',
-                        ),
+                        isPhoneSize(context)
+                            ? MobileButton(
+                                backgroundColor: blue900,
+                                foregroundColor: Colors.white,
+                                text: 'Get Started',
+                              )
+                            : DesktopButton(
+                                backgroundColor: blue900,
+                                foregroundColor: Colors.white,
+                                text: 'Get Started',
+                              ),
                       ],
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsGeometry.symmetric(vertical: 64),
+                  padding: EdgeInsetsGeometry.symmetric(
+                    vertical: isDesktopSize(context) ? 188 : 64,
+                  ),
                   child: isPhoneSize(context)
                       ? Column(
                           children: [
@@ -239,10 +263,7 @@ class HomePage extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(child: presentationTextsAndButton),
-                              Expanded(
-                                //child: Image.asset('assets/images/hero-desktop.png'),
-                                child: Container(),
-                              ),
+                              Expanded(child: Container()),
                             ],
                           ),
                         ),
@@ -258,7 +279,7 @@ class HomePage extends StatelessWidget {
                   padding: _getGlobalHorizontalPadding(context),
                   child: Padding(
                     padding: isPhoneSize(context)
-                        ? EdgeInsetsGeometry.only(top: 64, bottom: 80)
+                        ? EdgeInsetsGeometry.only(bottom: 80)
                         : EdgeInsetsGeometry.only(top: 64, bottom: 144),
                     child: isPhoneSize(context)
                         ? Column(
@@ -328,14 +349,20 @@ class HomePage extends StatelessWidget {
                       SvgPicture.asset(
                         'assets/logo-light.svg',
                         semanticsLabel: 'skilled logo',
-                        height: 20,
-                        width: 79,
+                        height: isDesktopSize(context) ? 28 : 20,
+                        width: isDesktopSize(context) ? 111 : 79,
                       ),
-                      MobileGradientButton(
-                        backgroundGradient: gradientPreset2,
-                        foregroundColor: Colors.white,
-                        text: 'Get Started',
-                      ),
+                      isPhoneSize(context)
+                          ? MobileGradientButton(
+                              backgroundGradient: gradientPreset2,
+                              foregroundColor: Colors.white,
+                              text: 'Get Started',
+                            )
+                          : DesktopGradientButton(
+                              backgroundGradient: gradientPreset2,
+                              foregroundColor: Colors.white,
+                              text: 'Get Started',
+                            ),
                     ],
                   ),
                 ),
@@ -352,7 +379,7 @@ class HomePage extends StatelessWidget {
         ? EdgeInsets.symmetric(horizontal: 20)
         : isTabSize(context)
         ? EdgeInsets.symmetric(horizontal: 44)
-        : EdgeInsets.symmetric(horizontal: 144);
+        : EdgeInsets.symmetric(horizontal: 160);
   }
 
   bool isPhoneSize(BuildContext context) {
@@ -362,6 +389,10 @@ class HomePage extends StatelessWidget {
   bool isTabSize(BuildContext context) {
     return MediaQuery.sizeOf(context).width >= 600 &&
         MediaQuery.sizeOf(context).width < 1200;
+  }
+
+  bool isDesktopSize(BuildContext context) {
+    return !isPhoneSize(context) && !isTabSize(context);
   }
 }
 //SingleChildScrollView
